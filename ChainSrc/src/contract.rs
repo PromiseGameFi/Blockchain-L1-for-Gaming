@@ -1,0 +1,1 @@
+//Smart contract support (for games and asset management)

@@ -1,0 +1,1 @@
+//Contract for NFT-based game assets
