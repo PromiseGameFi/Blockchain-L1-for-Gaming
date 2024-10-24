@@ -1,0 +1,78 @@
+[package]
+name = "avalanche-l2-bridge"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "An L2 bridge implementation for Avalanche"
+license = "MIT"
+repository = "https://github.com/yourusername/avalanche-l2-bridge"
+
+[dependencies]
+# Ethereum/Web3 related
+ethers = { version = "2.0", features = ["ws", "rustls"] }
+web3 = "0.19"
+ethereum-types = "0.14"
+
+# Async runtime and utilities
+tokio = { version = "1.28", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+# Serialization/Deserialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Cryptography and hashing
+sha3 = "0.10"
+hex = "0.4"
+primitive-types = "0.12"
+secp256k1 = { version = "0.27", features = ["rand"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging and debugging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Time handling
+chrono = "0.4"
+
+# Configuration
+config = "0.13"
+dotenv = "0.15"
+
+# Testing
+mockall = "0.11"
+tokio-test = "0.4"
+
+[dev-dependencies]
+# Testing utilities
+proptest = "1.2"
+test-case = "3.1"
+
+[features]
+default = ["standard"]
+standard = []
+testing = ["mockall"]
+metrics = ["ethers/metrics"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[[bin]]
+name = "avalanche-l2-bridge"
+path = "src/main.rs"
+
+[lib]
+name = "avalanche_l2_bridge"
+path = "src/lib.rs"
