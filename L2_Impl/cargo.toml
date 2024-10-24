@@ -40,21 +40,4 @@ standard = []
 testing = ["mockall"]
 metrics = ["ethers/metrics"]
 
-[profile.release]
-opt-level = 3
-lto = true
-codegen-units = 1
-panic = "abort"
-strip = true
-
-[profile.dev]
-opt-level = 0
-debug = true
-
-[[bin]]
-name = "avalanche-l2-bridge"
-path = "src/main.rs"
-
-[lib]
-name = "avalanche_l2_bridge"
-path = "src/lib.rs"
+ 
