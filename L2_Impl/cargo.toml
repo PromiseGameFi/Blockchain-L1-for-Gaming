@@ -35,7 +35,6 @@ test-case = "3.1"
 [features]
 default = ["standard"]
 standard = []
-testing = ["mockall"]
 metrics = ["ethers/metrics"]
 
  
