@@ -2,10 +2,10 @@
 name = "avalanche-l2-bridge"
 version = "0.1.0"
 edition = "2021"  # Explicitly set to 2021
-authors = ["Your Name <your.email@example.com>"]
+authors =  "Promise Emmanuel"
 description = "An L2 bridge implementation for Avalanche"
 license = "MIT"
-repository = "https://github.com/yourusername/avalanche-l2-bridge"
+repository = "https://github.com/PromiseGameFi/Blockchain-L2-for-Gaming"
 
 [dependencies]
 # Ethereum/Web3 related
