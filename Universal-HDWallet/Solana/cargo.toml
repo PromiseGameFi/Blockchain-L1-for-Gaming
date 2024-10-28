@@ -3,12 +3,9 @@ name = "Universal_hdwallet"
 version = "0.1.0"
 edition = "2021"
 description = "HD wallet implementation for Solana built with Rust"
-homepage = 
-repository = 
 readme = "README.md"
-keywords = 
 categories = ["cryptography::cryptocurrencies"]
-authors =  
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
