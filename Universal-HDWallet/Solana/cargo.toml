@@ -14,7 +14,6 @@ bip0039 = { version = "0.10.1", features = ["czech", "french", "italian", "japan
 curve25519-dalek = "3.2.1"
 ed25519-dalek = "1.0.1"
 ring = "0.16"
-tikv-jemallocator = "0.4.0"
 base58 = "0.1"
 hex = "0.4"
 ripemd160 = "0.8"

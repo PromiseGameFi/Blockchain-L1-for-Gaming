@@ -1,0 +1,22 @@
+[package]
+name = "hdwallet"
+version = "0.4.1"
+edition = "2021"
+
+[workspace]
+members = [
+  "hdwallet-bitcoin"
+]
+
+[dependencies]
+secp256k1 = "0.26"
+rand_core = "0.6.4"
+ring = "0.16"
+lazy_static = "1.4"
+thiserror = "1.0.38"
+
+[dev-dependencies]
+hex = "0.4"
+base58 = "0.1"
+ripemd160 = "0.8"
+rand = "0.8.3"
