@@ -1,4 +1,3 @@
-import bip38
 import binascii
 
 def decrypt_bip38(bip38_key, password):

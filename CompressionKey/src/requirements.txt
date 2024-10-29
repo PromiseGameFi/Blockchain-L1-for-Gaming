@@ -1,3 +1,4 @@
-ecdsa==0.17.0         # Library for ECDSA key generation and signing
-pycryptodome==3.17.0  # Library for cryptographic functions (AES, etc.)
-base58==2.1.0         # Library for base58 encoding/decoding
+ecdsa==0.18.0
+pycryptodome==3.19.1
+base58==2.1.1
+scrypt==0.8.27
