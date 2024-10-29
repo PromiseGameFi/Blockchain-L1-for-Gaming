@@ -1,0 +1,6 @@
+ecdsa==0.18.0             # For elliptic curve key generation and management
+pycryptodome==3.10.1      # For AES encryption/decryption used in BIP38
+bip38==0.2.1              # For BIP38 decryption and encryption functions
+base58==2.1.0             # For encoding keys in Base58, used in Wallet Import Format (WIF)
+keccak==0.3.0             # For keccak-256 hashing to generate Ethereum addresses
+pytest==7.1.2             # For testing the functionality of the code
