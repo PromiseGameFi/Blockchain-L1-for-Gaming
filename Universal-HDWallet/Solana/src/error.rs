@@ -19,3 +19,8 @@ impl From<ChainPathError> for Error {
     }
 }
 
+impl From<ed25519_dalek::ed25519::Error> for Error {
+    fn from(err: ed25519_dalek::ed25519::Error) -> Error {
+        Error::EdDsa(err)
+    }
+}
