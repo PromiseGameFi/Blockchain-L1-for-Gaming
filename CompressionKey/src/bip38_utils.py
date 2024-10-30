@@ -7,7 +7,7 @@ def decrypt_bip38(bip38_key, password):
     try:
         return bip38.decrypt(bip38_key, password)
     except ValueError:
-        raise ValueError("Failed to decrypt BIP38 key. Check the password and key format.")
+        raise ValueError("Failed to decrypt BIP38 key. Check the password used and key format.")
 
 def encrypt_bip38(private_key, password, compressed=False):
     """
