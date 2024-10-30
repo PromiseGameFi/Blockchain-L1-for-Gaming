@@ -1,5 +1,9 @@
 import binascii
 
+"""
+Decrypts
+"""
+
 def decrypt_bip38(bip38_key, password):
     """
     Decrypts a BIP38-encoded private key using the provided password.
