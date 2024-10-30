@@ -41,6 +41,8 @@ For each key format (compressed and uncompressed):
 -  pip install -r src/requirements.txt
 -  python src/main.py
 
+pip install bip38
+
 
 ## Key Steps for Implementation
 
