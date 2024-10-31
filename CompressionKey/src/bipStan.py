@@ -9,7 +9,7 @@ from bip38.wif import private_key_to_wif
 # Private key
 PRIVATE_KEY: str = "cbf4b9f70470856bb4f40f80b87edb90865997ffee6df315ab166d713af433a5"
 # Passphrase / password
-PASSPHRASE: str = "meherett"  # u"\u03D2\u0301\u0000\U00010400\U0001F4A9"
+PASSPHRASE: str = "meerett"  # u"\u03D2\u0301\u0000\U00010400\U0001F4A9"
 # Network type
 NETWORK:str = "mainnet"
 # To show detail
