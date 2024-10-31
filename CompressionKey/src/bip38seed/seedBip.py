@@ -1,3 +1,4 @@
+'Convert Seed Phrase to seed'
 import tkinter as tk
 from tkinter import messagebox
 from Crypto.Cipher import AES
@@ -81,10 +82,24 @@ def decrypt_button_click():
     except Exception as e:
         messagebox.showerror("Decryption Error", f"An error occurred: {e}")
 
+# Function to copy the encrypted seed to clipboard
+def copy_encrypted_seed():
+    encrypted_seed = encrypted_seed_output.get()
+    root.clipboard_clear()
+    root.clipboard_append(encrypted_seed)
+    messagebox.showinfo("Copied", "Encrypted seed copied to clipboard!")
+
+# Function to copy the decrypted seed to clipboard
+def copy_decrypted_seed():
+    decrypted_seed = decrypted_seed_output.get()
+    root.clipboard_clear()
+    root.clipboard_append(decrypted_seed)
+    messagebox.showinfo("Copied", "Decrypted seed copied to clipboard!")
+
 # Set up the main UI
 root = tk.Tk()
 root.title("Seed Phrase Encrypt/Decrypt Tool")
-root.geometry("600x550")
+root.geometry("600x600")
 
 # Encrypt Section
 tk.Label(root, text="Encrypt Seed Phrase", font=("Arial", 14)).pack(pady=10)
@@ -105,6 +120,9 @@ encrypted_seed_output = tk.StringVar()
 encrypted_seed_label = tk.Entry(root, textvariable=encrypted_seed_output, width=70, state="readonly")
 encrypted_seed_label.pack()
 
+copy_encrypted_button = tk.Button(root, text="Copy Encrypted Seed", command=copy_encrypted_seed)
+copy_encrypted_button.pack(pady=5)
+
 # Decrypt Section
 tk.Label(root, text="Decrypt Encrypted Seed", font=("Arial", 14)).pack(pady=20)
 
@@ -123,6 +141,9 @@ tk.Label(root, text="Decrypted Seed Phrase:").pack()
 decrypted_seed_output = tk.StringVar()
 decrypted_seed_label = tk.Entry(root, textvariable=decrypted_seed_output, width=70, state="readonly")
 decrypted_seed_label.pack()
+
+copy_decrypted_button = tk.Button(root, text="Copy Decrypted Seed", command=copy_decrypted_seed)
+copy_decrypted_button.pack(pady=5)
 
 # Start the main loop
 root.mainloop()
