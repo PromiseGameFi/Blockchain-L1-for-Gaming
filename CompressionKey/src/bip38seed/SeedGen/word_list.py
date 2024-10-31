@@ -1,6 +1,6 @@
 # word_list.py
 
-WORD_LIST = [
+BIP39_WORDLIST = [
     "abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", 
     "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acquire", 
     "across", "act", "action", "actor", "actress", "adapt", "add", "address", "adjust", 
