@@ -97,5 +97,5 @@ WORD_LIST = [
     "wall", "want", "warm", "watch", "way", "we", "weight", "well", "west", 
     "what", "when", "where", "which", "while", "whisper", "wide", "wild", 
     "wish", "within", "word", "work", "world", "worry", "write", "wrong", 
-    "year", "young", "your"
+    "year", "young", "your", "wash", "indicate", "mandate", "surround", "appear", "three", "bitter", "mixture", "million", "plastic", "skate", "pulp"
 ]
