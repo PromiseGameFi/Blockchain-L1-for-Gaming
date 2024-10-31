@@ -1,0 +1,10 @@
+### Password-Based Key Derivation (PBKDF2):
+
+ Generate a strong encryption key from the password using PBKDF2 with SHA-256, which is better suited for password-based encryption than a simple hash function.
+
+### AES Encryption and Decryption:
+
+ Encrypt and decrypt the private key using AES-256-CBC mode with a random initialization vector (IV).
+### Salt and IV Management: 
+
+Store the salt and IV along with the encrypted private key to allow decryption later.
