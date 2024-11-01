@@ -1,0 +1,9 @@
+[dependencies]
+ethers = "1.0"         # Ethereum client for Rust, including wallet support
+bip39 = "1.1"          # BIP-39 support for seed phrases
+hex = "0.4"            # Hexadecimal encoding/decoding for handling addresses and keys
+tokio = { version = "1", features = ["full"] } # Async runtime for Ethereum transactions
+
+# Choose one for UI framework (for example, Tauri for a desktop app)
+yew = "0.19"            # For web-based UI with Yew (or optionally use `tauri` for desktop)
+serde = { version = "1", features = ["derive"] }
