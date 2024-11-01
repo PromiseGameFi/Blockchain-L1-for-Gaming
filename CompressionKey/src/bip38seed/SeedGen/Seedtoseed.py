@@ -107,7 +107,7 @@ def decrypt_from_24_word_mnemonic(encrypted_mnemonic, password):
         decrypted_bytes = unpad(decrypted_padded, AES.block_size)
         
         # Convert back to 24-word mnemonic
-        return bytes_to_24_word_mnemonic(key)
+        return bytes_to_24_word_mnemonic(decrypted_bytes)
     except Exception as e:
         print(f"Debug - Decryption error: {str(e)}")  # For debugging
         raise ValueError("Decryption failed. Wrong password or corrupted data.")
