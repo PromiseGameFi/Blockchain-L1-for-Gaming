@@ -16,7 +16,7 @@ def bytes_to_words(data):
         if len(chunk) < 11:
             chunk = chunk.ljust(11, '0')
         index = int(chunk, 2)
-        words.append(WORDLIST[index % len(WORDLIST)])
+        words.append(BIP39_WORDLIST[index % len(BIP39_WORDLIST)])
     return ' '.join(words[:24])  # Ensure exactly 24 words
 
 def words_to_bytes(seed_phrase):
@@ -28,7 +28,7 @@ def words_to_bytes(seed_phrase):
     binary = ''
     for word in words:
         try:
-            index = WORDLIST.index(word.lower())
+            index = BIP39_WORDLIST.index(word.lower())
             binary += format(index, '011b')
         except ValueError:
             raise ValueError(f"Invalid word in seed phrase: {word}")
