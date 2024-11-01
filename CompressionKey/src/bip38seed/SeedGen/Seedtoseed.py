@@ -3,11 +3,10 @@ from tkinter import messagebox
 from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
 from word_list import BIP39_WORDLIST
 import hashlib
 import hmac
-
-
 
 def mnemonic_to_bytes(mnemonic):
     """Convert a mnemonic phrase to bytes"""
@@ -73,8 +72,8 @@ def encrypt_to_24_word_mnemonic(seed_phrase, password):
     # Prepare cipher
     cipher = AES.new(key, AES.MODE_CBC, iv)
     
-    # Pad seed bytes to 32 bytes if necessary
-    padded_seed = seed_bytes + b'\0' * (32 - len(seed_bytes))
+    # Pad the data properly using PKCS7
+    padded_seed = pad(seed_bytes, AES.block_size)
     
     # Encrypt
     encrypted_seed = cipher.encrypt(padded_seed)
@@ -87,26 +86,32 @@ def encrypt_to_24_word_mnemonic(seed_phrase, password):
 
 def decrypt_from_24_word_mnemonic(encrypted_mnemonic, password):
     """Decrypt a 24-word mnemonic back to original seed phrase"""
-    # Convert encrypted mnemonic to bytes
-    encrypted_bytes = mnemonic_to_bytes(encrypted_mnemonic)
-    
-    # Extract components
-    salt = encrypted_bytes[:16]
-    iv = encrypted_bytes[16:32]
-    encrypted_seed = encrypted_bytes[32:]
-    
-    # Generate decryption key
-    key = PBKDF2(password, salt, dkLen=32, count=1000000)
-    
-    # Decrypt
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    decrypted_bytes = cipher.decrypt(encrypted_seed)
-    
-    # Remove padding and convert to mnemonic
-    decrypted_bytes = decrypted_bytes.rstrip(b'\0')
-    return bytes_to_24_word_mnemonic(decrypted_bytes)[:24]
+    try:
+        # Convert encrypted mnemonic to bytes
+        encrypted_bytes = mnemonic_to_bytes(encrypted_mnemonic)
+         
+        
+        # Extract components
+        salt = encrypted_bytes[:16]
+        iv = encrypted_bytes[16:32]
+        encrypted_seed = encrypted_bytes[32:]
+        
+        # Generate decryption key
+        key = PBKDF2(password, salt, dkLen=32, count=1000000)
+        
+        # Decrypt
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        decrypted_padded = cipher.decrypt(encrypted_seed)
+        
+        # Remove padding
+        decrypted_bytes = unpad(decrypted_padded, AES.block_size)
+        
+        # Convert to mnemonic
+        return bytes_to_24_word_mnemonic(decrypted_bytes)
+    except ValueError as e:
+        raise ValueError("Decryption failed. Wrong password or corrupted data.")
 
-# GUI Functions
+# GUI Functions remain the same
 def encrypt_button_click():
     seed_phrase = seed_phrase_entry.get("1.0", "end-1c").strip()
     password = encrypt_password_entry.get()
@@ -135,7 +140,6 @@ def decrypt_button_click():
     except Exception as e:
         messagebox.showerror("Decryption Error", f"An error occurred: {str(e)}")
 
-# Copy functions
 def copy_encrypted_seed():
     encrypted_seed = encrypted_seed_output.get()
     root.clipboard_clear()
@@ -153,7 +157,7 @@ root = tk.Tk()
 root.title("24-Word Seed Phrase Encryption Tool")
 root.geometry("800x700")
 
-# Encrypt Section
+# GUI elements remain the same as in original code...
 tk.Label(root, text="Encrypt Seed Phrase", font=("Arial", 14)).pack(pady=10)
 
 tk.Label(root, text="Original Seed Phrase:").pack()
@@ -175,7 +179,6 @@ encrypted_seed_label.pack()
 copy_encrypted_button = tk.Button(root, text="Copy Encrypted Seed", command=copy_encrypted_seed)
 copy_encrypted_button.pack(pady=5)
 
-# Decrypt Section
 tk.Label(root, text="Decrypt Seed Phrase", font=("Arial", 14)).pack(pady=20)
 
 tk.Label(root, text="Encrypted 24-Word Seed Phrase:").pack()
