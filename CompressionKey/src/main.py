@@ -21,7 +21,11 @@ class Bip38:
         if len(private_key) < 32:
             private_key = private_key.rjust(32, b'\x00')
         
+        data_to_encrypt = private_key + (b'\x01' if compressed else b'')
+        data_to_encrypt = pad(data_to_encrypt, AES.block_size)
         
+        aes = AES.new(half2, AES.MODE_ECB)
+        encrypted = aes.encrypt(data_to_encrypt)
         
         result = b'\x01\x42' + (b'\xe0' if compressed else b'\xc0') + salt + encrypted
         checksum = hashlib.sha256(hashlib.sha256(result).digest()).digest()[:4]
