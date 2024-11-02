@@ -101,6 +101,7 @@ const data = await contract.retrieveEncryptedData(dataId);
 const viewedData = await contract.viewEncryptedData(dataId);
 ```
 
+
 // 1. Using user address + timestamp
 const dataId = ethers.utils.keccak256(
     ethers.utils.solidityPack(
