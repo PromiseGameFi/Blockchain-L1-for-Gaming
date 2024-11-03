@@ -24,4 +24,7 @@ def test_encrypt_bip38_success():
     expected_bip38_key = "6PRNw7...your_expected_encrypted_key_here..."  # Replace with expected output
     assert encrypted_key == expected_bip38_key
 
-def test_encryption()
+def test_encryption():
+    private_key= bytes.fromhex("your_test_private_key_here")
+    password = "correct_password"
+    encrypted_key = encrypt_bip38(private_key, password, compressed=True)
