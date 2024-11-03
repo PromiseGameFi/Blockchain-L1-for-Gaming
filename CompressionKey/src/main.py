@@ -3,9 +3,7 @@ import hashlib
 from ecdsa import SigningKey, SECP256k1
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import os
-import base58
-import scrypt
+
 
 class Bip38:
     @staticmethod
