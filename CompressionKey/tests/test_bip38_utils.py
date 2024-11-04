@@ -25,5 +25,4 @@ def test_encrypt_bip38_success():
     assert encrypted_key == expected_bip38_key
 
 def test_encryption():
-    private_key= bytes.fromhex("your_test_private_key_here")
-    password 
+    private_key= bytes.
