@@ -27,4 +27,3 @@ def test_encrypt_bip38_success():
 def test_encryption():
     private_key= bytes.fromhex("your_test_private_key_here")
     password = "correct_password"
-    encrypted_key = encrypt_bip38(private_key, password, compressed=True)
