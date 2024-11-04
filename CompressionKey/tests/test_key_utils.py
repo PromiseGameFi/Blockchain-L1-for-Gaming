@@ -14,6 +14,7 @@ def test_private_key_to_public_key_compressed():
     expected_public_key = bytes.fromhex("your_expected_compressed_public_key_here")  # Replace with expected output
     assert public_key == expected_public_key
 
+
 def test_private_key_to_public_key_uncompressed():
     private_key = bytes.fromhex("your_test_private_key_here")  # Replace with actual private key
     public_key = private_key_to_public_key(private_key, compressed=False)
