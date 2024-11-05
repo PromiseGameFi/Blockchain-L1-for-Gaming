@@ -36,8 +36,11 @@ For each key format (compressed and uncompressed):
 ---
 ## SetUp
 
--  python3 -m venv venv
--  source venv/bin/activate  # On Windows: venv\Scripts\activate
+-  source venv/bin/activate
+-  source venv/bin/activate  # On Windows: i want to go live on twitter to talk about this Bip39, Bip32, BIP44, Derivation path, how Entropy is used to get raw Binary, with binary checksum convert to word indexes to get bip39 Mnemonic....
+
+Can you create a guide for me to explain then session it as a 1 hour of class.
+It just basically explaining then in a way that technical and people can understand..
 -  pip install -r src/requirements.txt
 -  python src/main.py
 

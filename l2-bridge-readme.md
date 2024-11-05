@@ -58,7 +58,7 @@ let config = L1Config {
     bridge_contract_address: "0x...".parse()?,
     chain_id: 43114, // Avalanche C-Chain
 };
-
+The rpc_url is not a valid url
 // Initialize and start the bridge
 let mut bridge = L2Bridge::new(config).await?;
 bridge.initialize().await?;
