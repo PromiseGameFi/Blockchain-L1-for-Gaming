@@ -57,18 +57,6 @@ class Bip38:
             
             # Decrypt
             aes = AES.new(half2, AES.MODE_ECB)
-            decrypted = aes.decrypt(encrypted)
-            
-            try:
-                decrypted = unpad(decrypted, AES.block_size)
-            except ValueError:
-                # If unpadding fails, try without unpadding
-                pass
-            
-            # Check if compressed flag is present
-            is_compressed = bool(flag & 0x20)
-            if is_compressed and decrypted[-1] == 0x01:
-                decrypted = decrypted[:-1]
             
             # Ensure we have a 32-byte private key
             if len(decrypted) > 32:
