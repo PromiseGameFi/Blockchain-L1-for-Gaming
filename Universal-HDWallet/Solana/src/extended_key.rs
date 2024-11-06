@@ -33,7 +33,7 @@ impl PartialEq for SolanaExPrivateKey {
     }
 }
 
-# [derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SolanaExPublicKey(pub Pk);
 
 impl SolanaExPrivateKey {
