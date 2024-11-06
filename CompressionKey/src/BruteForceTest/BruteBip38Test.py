@@ -46,7 +46,7 @@ def bruteforce(password, max_nchar=8):
     if len(cnl) == 1:
         print('\nPassword:', cnl)
         return cnl
-
+    if len()
     print('2) Digits cartesian product')
     for l in range(1, 9):
         generator = product(string.digits, repeat=int(l))
