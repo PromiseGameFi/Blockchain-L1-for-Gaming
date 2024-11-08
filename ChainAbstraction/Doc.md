@@ -15,9 +15,7 @@ With their account in place, applications can prompt users to create meta-transa
 
 ### Example: Nonce Usage in Ethereum
 In Ethereum, each account has a transaction nonce:
-
-
-
+The nonce starts at zero for each account and increments by one with each new transaction. When a new transaction is created, it must include the next expected nonce for that account. For example, if an account has already sent 5 transactions, the next transaction should have a nonce of 6. When the transaction is submitted, the network nodes check the nonce against the account's transaction history. If the nonce doesn’t match the expected sequence, the transaction is either rejected (if the nonce is already used) or held temporarily (if it’s too high and out of sequence). This design prevents replay attacks because any attempt to reuse a previous transaction’s nonce will result in rejection since that nonce has already been processed.
 
 ### Nonce in Proof-of-Work Consensus
 In Proof-of-Work (PoW) blockchains, such as Bitcoin, nonces play a different role:
