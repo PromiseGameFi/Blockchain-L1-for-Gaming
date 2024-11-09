@@ -97,21 +97,7 @@ interface L2Config {
     private challengePeriod: number;
     private validators: string[];
   
-    constructor(challengePeriod: number, validators: string[]) {
-      this.challengePeriod = challengePeriod;
-      this.validators = validators;
-    }
-  
-    // Submit fraud proof
-    async submitFraudProof(stateRoot: string, proof: string): Promise<boolean> {
-      // Verify the fraud proof
-      if (await this.verifyProof(stateRoot, proof)) {
-        await this.rollbackState(stateRoot);
-        return true;
-      }
-      return false;
-    }
-  
+    
     // Verify submitted proof
     private async verifyProof(stateRoot: string, proof: string): Promise<boolean> {
       // Implementation of proof verification
