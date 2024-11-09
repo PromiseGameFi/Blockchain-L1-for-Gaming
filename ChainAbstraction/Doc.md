@@ -22,13 +22,11 @@ In Proof-of-Work (PoW) blockchains, such as Bitcoin, nonces play a different rol
 
 Mining Nonce: Miners use a separate nonce field in the block header to vary their hash inputs when trying to solve the cryptographic puzzle (i.e., finding a hash below a certain difficulty target). The mining nonce is specific to each block, and it is incremented or adjusted to change the resulting hash.
 Preventing Forks and Replay Attacks: Mining nonces ensure that each block’s hash is unique, which helps prevent chain forks and potential replay attacks on blocks. Blocks with identical contents but different nonces will produce different hashes, making each block unique.
+
 ### How Blockchain Systems Handle Nonce Checks
 In blockchain, nonce checks work differently due to the decentralized network structure:
 
 Distributed Ledger: Every node has access to the current state of the blockchain, including account nonces and balances. This shared ledger allows nodes to collectively check if a transaction’s nonce is correct for a given account.
-Immutable Record of Nonces: Each transaction is permanently recorded on the blockchain. Once a transaction with a specific nonce is confirmed, that nonce cannot be reused by that account, effectively preventing replays.
-Consensus Protocol: Miners and validators enforce nonce rules by agreeing only to add blocks containing valid transactions with correct nonces. If a transaction with an invalid nonce is detected, it is rejected during the consensus process and will not be included in a block.
-Key Points Summarized
-Account-Based Nonces: Every transaction must have a unique nonce that corresponds to the next expected number for that account. This ensures transaction uniqueness and correct sequencing.
+Immutable Record of Nonces: Each transaction is permanently recorded on the blockchain. Once a transaction with a specific nonce is confirmed, that nonce cannot be reused by that account, effectively preventing a unique nonce that corresponds to the next expected number for that account. This ensures transaction uniqueness and correct sequencing.
 Decentralized Nonce Verification: Unlike web systems with a centralized server, each node in a blockchain network checks transaction nonces using the shared ledger.
 Replay Attack Prevention: Because the network will reject any transaction with a previously used nonce, replay attacks become unfeasible. This protects accounts from double-spending and other transaction replays.
