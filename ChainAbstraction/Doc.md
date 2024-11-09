@@ -4,13 +4,7 @@ create and recover accounts using Social accounts and Email.
 multi-chain signature 
 Accounts to sign transactions in other chains.
 
-### Details 
-
-This  services enables a seamless user experience, allowing users to interact with blockchain-based applications without even being aware they’re using blockchain technology.
-
-Users can simply sign in with an email address, which generates a zero-fund account for them—no seed phrases to remember, no private keys to safeguard, and no need to acquire initial funds.
-
-With their account in place, applications can prompt users to create meta-transactions and forward them to a relayer. The relayer then submits the transaction to the network,
+action to the network,
 
 
 ### Example: Nonce Usage in Ethereum
@@ -27,6 +21,9 @@ Preventing Forks and Replay Attacks: Mining nonces ensure that each block’s ha
 In blockchain, nonce checks work differently due to the decentralized network structure:
 
 Distributed Ledger: Every node has access to the current state of the blockchain, including account nonces and balances. This shared ledger allows nodes to collectively check if a transaction’s nonce is correct for a given account.
-Immutable Record of Nonces: Each transaction is permanently recorded on the blockchain. Once a transaction with a specific nonce is confirmed, that nonce cannot be reused by that account, effectively preventing a unique nonce that corresponds to the next expected number for that account. This ensures transaction uniqueness and correct sequencing.
+Immutable Record of Nonces: Each transaction is permanently recorded on the blockchain. Once a transaction with a specific nonce is confirmed, that nonce cannot be reused by that account, effectively preventing replays.
+Consensus Protocol: Miners and validators enforce nonce rules by agreeing only to add blocks containing valid transactions with correct nonces. If a transaction with an invalid nonce is detected, it is rejected during the consensus process and will not be included in a block.
+Key Points Summarized
+Account-Based Nonces: Every transaction must have a unique nonce that corresponds to the next expected number for that account. This ensures transaction uniqueness and correct sequencing.
 Decentralized Nonce Verification: Unlike web systems with a centralized server, each node in a blockchain network checks transaction nonces using the shared ledger.
 Replay Attack Prevention: Because the network will reject any transaction with a previously used nonce, replay attacks become unfeasible. This protects accounts from double-spending and other transaction replays.
