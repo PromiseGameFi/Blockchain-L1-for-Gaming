@@ -17,7 +17,11 @@ With their account in place, applications can prompt users to create meta-transa
 In Ethereum, each account has a transaction nonce:
 The nonce starts at zero for each account and increments by one with each new transaction. When a new transaction is created, it must include the next expected nonce for that account. For example, if an account has already sent 5 transactions, the next transaction should have a nonce of 6. When the transaction is submitted, the network nodes check the nonce against the account's transaction history. If the nonce doesn’t match the expected sequence, the transaction is either rejected (if the nonce is already used) or held temporarily (if it’s too high and out of sequence). This design prevents replay attacks because any attempt to reuse a previous transaction’s nonce will result in rejection since that nonce has already been processed.
 
+### Nonce in Proof-of-Work Consensus
+In Proof-of-Work (PoW) blockchains, such as Bitcoin, nonces play a different role:
 
+Mining Nonce: Miners use a separate nonce field in the block header to vary their hash inputs when trying to solve the cryptographic puzzle (i.e., finding a hash below a certain difficulty target). The mining nonce is specific to each block, and it is incremented or adjusted to change the resulting hash.
+Preventing Forks and Replay Attacks: Mining nonces ensure that each block’s hash is unique, which helps prevent chain forks and potential replay attacks on blocks. Blocks with identical contents but different nonces will produce different hashes, making each block unique.
 ### How Blockchain Systems Handle Nonce Checks
 In blockchain, nonce checks work differently due to the decentralized network structure:
 
