@@ -13,6 +13,7 @@
     
     <!-- Blockchain Networks -->
     <rect x="50" y="350" width="150" height="80" rx="10" fill="#ff6b6b"/>
+    
     <text x="125" y="395" text-anchor="middle" fill="white" font-size="16">Ethereum</text>
     
     <rect x="250" y="350" width="150" height="80" rx="10" fill="#ff6b6b"/>
