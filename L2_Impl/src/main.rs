@@ -68,12 +68,13 @@ interface L2Config {
       return "merkle_root_hash";
     }
   }
-  
+
   
   // Bridge implementation for asset transfers
   class GameAssetsBridge {
     private l1Contract: string;
     private l2Contract: string;
+  
   
     constructor(l1Contract: string, l2Contract: string) {
       this.l1Contract = l1Contract;
