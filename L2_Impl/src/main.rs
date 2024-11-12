@@ -69,6 +69,7 @@ interface L2Config {
     }
   }
   
+  
   // Bridge implementation for asset transfers
   class GameAssetsBridge {
     private l1Contract: string;
