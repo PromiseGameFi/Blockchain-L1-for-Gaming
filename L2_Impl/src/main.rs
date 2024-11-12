@@ -75,16 +75,10 @@ interface L2Config {
     private l1Contract: string;
     private l2Contract: string;
   
-  
+
     constructor(l1Contract: string, l2Contract: string) {
       this.l1Contract = l1Contract;
       this.l2Contract = l2Contract;
-    }
-  
-    // Lock assets on L1
-    async lockOnL1(assetId: string, amount: number): Promise<string> {
-      // Implementation of asset locking on L1
-      return "lock_transaction_hash";
     }
   
     // Mint corresponding assets on L2
