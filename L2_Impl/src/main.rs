@@ -81,6 +81,7 @@ interface L2Config {
       this.l2Contract = l2Contract;
     }
   
+  
     // Lock assets on L1
     async lockOnL1(assetId: string, amount: number): Promise<string> {
       // Implementation of asset locking on L1
