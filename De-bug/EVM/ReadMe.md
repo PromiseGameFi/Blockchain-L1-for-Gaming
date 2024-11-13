@@ -112,6 +112,13 @@ const dataId = ethers.utils.keccak256(
     )
 );
 
+// 2. Using user address + document type + counter
+const dataId = ethers.utils.keccak256(
+    ethers.utils.solidityPack(
+        ['address', 'string', 'uint256'],
+        [userAddress, 'medical_record', 1]
+    )
+);
 
 // 3. Using multiple parameters
 const dataId = ethers.utils.keccak256(
