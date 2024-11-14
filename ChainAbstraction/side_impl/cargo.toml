@@ -4,11 +4,11 @@ package
 name = "cross-chain-protocol"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = "Your Name <your.email@example.cm>"
 description = "A universal blockchain account system enabling seamless cross-chain interactions"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/yourusername/cross-chain-protocol"
+repository = "https://github.com/PromiseGameFi/Blockchain-L1-for-Gaming/tree/main/ChainAbstraction"
 keywords = ["blockchain", "cross-chain", "web3", "cryptocurrency"]
 categories = ["cryptography", "blockchain"]
 
