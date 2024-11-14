@@ -10,9 +10,7 @@ repository = "https://github.com/PromiseGameFi/Blockchain-L1-for-Gaming/tree/mai
 keywords = ["blockchain", "cross-chain", "web3", "cryptocurrency"]
 categories = ["cryptography", "blockchain"]
 
-[
-dependencies
-]
+[dependencies]
 # Async runtime
 tokio = { version = "1.36", features = ["full"] }
 async-trait = "0.1.77"
