@@ -1,1 +1,50 @@
-//
+[
+package
+]
+name = "cross-chain-protocol"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A universal blockchain account system enabling seamless cross-chain interactions"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/yourusername/cross-chain-protocol"
+keywords = ["blockchain", "cross-chain", "web3", "cryptocurrency"]
+categories = ["cryptography", "blockchain"]
+
+[
+dependencies
+]
+# Async runtime
+tokio = { version = "1.36", features = ["full"] }
+async-trait = "0.1.77"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Cryptography
+ethereum-types = "0.14"
+secp256k1 = { version = "0.28", features = ["rand"] }
+sha3 = "0.10"
+hex = "0.4"
+
+# Web3 specific
+web3 = "0.19"
+ethers = { version = "2.0", features = ["abigen", "ws", "rustls"] }
+primitive-types = "0.12"
+
+# Utilities
+futures = "0.3"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenv = "0.15"
+url = "2.5"
+
+# Storage
+sqlx = { version = "0.7", features = ["runtime-tokio", "tls-rustls", "postgres"] }
+redis = { version = "0.24", features = ["tokio-comp", "connection-manager"] }
