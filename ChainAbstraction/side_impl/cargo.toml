@@ -30,7 +30,7 @@ sha3 = "0.10"
 hex = "0.4"
 
 # Web3 specific
-web3 = "0.2"
+web3 = "0.19"
 ethers = { version = "2.0", features = ["abigen", "ws", "rustls"] }
 primitive-types = "0.12"
 
