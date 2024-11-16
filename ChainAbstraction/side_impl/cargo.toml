@@ -5,6 +5,10 @@ edition = "2021"
 authors = "PromiseGameFi"
 description = "A universal blockchain account system enabling seamless cross-chain interactions"
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/PromiseGameFi/Blockchain-L1-for-Gaming/tree/main/ChainAbstraction"
+keywords = ["blockchain", "cross-chain", "web3", "cryptocurrency"]
+categories = ["cryptography", "blockchain"]
 
 [dependencies]
 # Async runtime
