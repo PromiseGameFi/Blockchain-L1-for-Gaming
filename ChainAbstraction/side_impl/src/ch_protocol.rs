@@ -130,24 +130,7 @@ pub struct LayerZeroBridge {
     endpoint: String,
 }
 
-#[async_trait]
-impl Bridge for LayerZeroBridge {
-    async fn transfer(
-        &self,
-        from_chain: &ChainId,
-        to_chain: &ChainId,
-        amount: u128,
-        recipient: &str,
-    ) -> Result<String, ChainError> {
-        // Implementation would interact with LayerZero contracts
-        Ok("bridge_tx_hash".to_string())
-    }
 
-    async fn verify_transfer(&self, tx_hash: &str) -> Result<bool, ChainError> {
-        // Implementation would verify the bridge transaction
-        Ok(true)
-    }
-}
 
 // Example usage
 pub async fn example_usage() {
