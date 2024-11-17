@@ -109,20 +109,7 @@ pub struct EthereumAdapter {
 
 #[async_trait]
 impl ChainAdapter for EthereumAdapter {
-    async fn send_transaction(&self, tx: Transaction) -> Result<String, ChainError> {
-        // Implementation would use eth_provider to send transaction
-        Ok("tx_hash".to_string())
-    }
-
-    async fn get_balance(&self, address: &str) -> Result<u128, ChainError> {
-        // Implementation would fetch balance from eth_provider
-        Ok(100)
-    }
-
-    async fn get_nonce(&self, address: &str) -> Result<u64, ChainError> {
-        // Implementation would fetch nonce from eth_provider
-        Ok(0)
-    }
+   
 }
 
 // Example implementation for a cross-chain bridge
