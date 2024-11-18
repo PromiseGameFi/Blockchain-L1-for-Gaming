@@ -4,7 +4,15 @@ use std::collections::HashMap;
 use thiserror::Error;
 
 // Core types and errors
-
+#[derive(Debug, Error)]
+pub enum ChainError {
+    #[error("Chain not supported: {0}")]
+    UnsupportedChain(String),
+    #[error("Transaction failed: {0}")]
+    TransactionError(String),
+    #[error("Bridge error: {0}")]
+    BridgeError(String),
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChainId(pub String);
