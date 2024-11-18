@@ -43,25 +43,6 @@ pub struct Transaction {
     pub data: Vec<u8>,
 }
 ```
-- Generic transaction structure
-- Supports both value transfers and contract interactions
-- Uses u128 for maximum precision in amount handling
-
-## 2. Core Traits
-
-### ChainAdapter
-```rust
-#[async_trait]
-pub trait ChainAdapter {
-    async fn send_transaction(&self, tx: Transaction) -> Result<String, ChainError>;
-    async fn get_balance(&self, address: &str) -> Result<u128, ChainError>;
-    async fn get_nonce(&self, address: &str) -> Result<u64, ChainError>;
-}
-```
-**Purpose**: 
-- Defines standard interface for chain interactions
-- Enables pluggable support for different blockchains
-- Handles basic blockchain operations
 
 **Methods**:
 - `send_transaction`: Submits transactions to the blockchain
