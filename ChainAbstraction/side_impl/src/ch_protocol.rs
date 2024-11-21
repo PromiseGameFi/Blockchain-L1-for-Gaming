@@ -14,22 +14,6 @@ pub enum ChainError {
     BridgeError(String),
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ChainId(pub String);
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Account {
-    pub universal_id: String,
-    pub chain_specific_addresses: HashMap<ChainId, String>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Transaction {
-    pub from: String,
-    pub to: String,
-    pub amount: u128,
-    pub data: Vec<u8>,
-}
 
 // Core traits defining chain interaction behavior
 #[async_trait]
