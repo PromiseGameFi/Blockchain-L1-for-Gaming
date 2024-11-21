@@ -135,6 +135,7 @@ impl UniversalAccount {
 - Chain adapter registration
 - Bridge registration
 - Cross-chain transfer execution
+- Asset management across
 
 ## 4. Chain Adapter Implementations
 
