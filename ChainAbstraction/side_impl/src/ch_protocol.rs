@@ -45,7 +45,7 @@ pub trait Bridge {
         &self,
         from_chain: &ChainId,
         to_chain: &ChainId,
-        amount: u12,
+        amount: u128,
         recipient: &str,
     ) -> Result<String, ChainError>;
     
