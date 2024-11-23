@@ -185,7 +185,18 @@ impl eframe::App for SignatureApp {
                         });
                 });
 
-                
+                ui.text_edit_multiline(&mut self.message);
+
+                if ui.button("Send Encrypted Message").clicked() && !self.message.is_empty() {
+                    if let (Some(sender), Some(recipient)) = (
+                        self.users.get(current_user),
+                        self.users.get(&self.recipient),
+                    ) {
+                        let encrypted = self.encrypt_message(sender, recipient, &self.message);
+                        self.encrypted_messages.push((self.recipient.clone(), encrypted));
+                        self.message.clear();
+                    }
+                }
 
                 // Display received messages
                 ui.separator();
