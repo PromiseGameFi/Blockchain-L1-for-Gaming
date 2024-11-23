@@ -146,14 +146,7 @@ impl eframe::App for SignatureApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             // User Creation Section
-            ui.heading("Create New User");
-            ui.horizontal(|ui| {
-                ui.text_edit_singleline(&mut self.new_username);
-                if ui.button("Create User").clicked() && !self.new_username.is_empty() {
-                    self.create_user(self.new_username.clone());
-                    self.new_username.clear();
-                }
-            });
+            
 
             ui.separator();
 
