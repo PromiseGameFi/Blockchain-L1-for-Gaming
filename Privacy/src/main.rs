@@ -199,7 +199,24 @@ impl eframe::App for SignatureApp {
                 }
 
                 // Display received messages
-               
+                ui.separator();
+                ui.heading("Received Messages");
+                let current_user_clone = current_user.clone();
+                self.encrypted_messages.retain(|(recipient, encrypted_msg)| {
+                    if recipient == &current_user_clone {
+                        if let Some(recipient_user) = self.users.get(&current_user_clone) {
+                            if let Some(decrypted) = self.decrypt_message(recipient_user, encrypted_msg) {
+                                self.decrypted_messages.push((
+                                    BASE64.encode(&encrypted_msg.sender_public.as_bytes()),
+                                    decrypted,
+                                ));
+                            }
+                        }
+                        false
+                    } else {
+                        true
+                    }
+                });
 
                 // Display decrypted messages
                 for (sender, message) in &self.decrypted_messages {
