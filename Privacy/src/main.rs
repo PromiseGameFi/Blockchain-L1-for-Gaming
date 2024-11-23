@@ -227,14 +227,3 @@ impl eframe::App for SignatureApp {
     }
 }
 
-fn main() -> Result<(), eframe::Error> {
-    let options = eframe::NativeOptions {
-        initial_window_size: Some(egui::vec2(800.0, 600.0)),
-        ..Default::default()
-    };
-    eframe::run_native(
-        "Digital Signature System",
-        options,
-        Box::new(|_cc| Box::<SignatureApp>::default()),
-    )
-}
