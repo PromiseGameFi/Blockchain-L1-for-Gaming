@@ -165,7 +165,7 @@ fn decrypt_message(&self, recipient: &User, message: &EncryptedMessage) -> Optio
 ### 1. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/digital-signature-system
+git clone https://github.com/PromiseGameFi/Blockchain-L1-for-Gaming/tree/main/Privacy
 
 # Build the project
 cargo build --release
