@@ -169,21 +169,7 @@ impl eframe::App for SignatureApp {
 
             // Message Sending Section
             if let Some(current_user) = &self.current_user {
-                ui.separator();
-                ui.heading("Send Encrypted Message");
-                
-                ui.horizontal(|ui| {
-                    ui.label("To: ");
-                    egui::ComboBox::from_label("")
-                        .selected_text(&self.recipient)
-                        .show_ui(ui, |ui| {
-                            for username in self.users.keys() {
-                                if username != current_user {
-                                    ui.selectable_value(&mut self.recipient, username.clone(), username);
-                                }
-                            }
-                        });
-                });
+               
 
                 ui.text_edit_multiline(&mut self.message);
 
