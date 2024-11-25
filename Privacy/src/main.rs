@@ -158,14 +158,7 @@ impl eframe::App for SignatureApp {
             ui.separator();
 
             // User Selection
-            ui.heading("Select User");
-            egui::ComboBox::from_label("Current User")
-                .selected_text(self.current_user.as_deref().unwrap_or("None"))
-                .show_ui(ui, |ui| {
-                    for username in self.users.keys() {
-                        ui.selectable_value(&mut self.current_user, Some(username.clone()), username);
-                    }
-                });
+            
 
             // Message Sending Section
             if let Some(current_user) = &self.current_user {
