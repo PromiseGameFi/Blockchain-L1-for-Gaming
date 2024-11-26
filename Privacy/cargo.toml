@@ -6,10 +6,6 @@ edition = "2021"
 [dependencies]
 # Cryptography
 ed25519-dalek = "1.0"
-rsa = "0.9"
-rand = "0.8"
-aes-gcm = "0.10"
-base64 = "0.21"
 
 # GUI
 eframe = "0.22"
