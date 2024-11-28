@@ -59,37 +59,7 @@ impl SignatureApp {
     
     
     // Encrypt and sign a message
-    fn encrypt_message(&self, sender: &User, recipient: &User, message: &str) -> EncryptedMessage {
-        // Generate a random symmetric key
-        let symmetric_key = Aes256Gcm::generate_key(&mut AesOsRng);
-        
-        // Create cipher
-        let cipher = Aes256Gcm::new(&symmetric_key);
-        let nonce = Aes256Gcm::generate_nonce(&mut AesOsRng);
-        
-        // Encrypt the message using AES-GCM
-        let encrypted_data = cipher
-            .encrypt(&nonce, message.as_bytes().as_ref())
-            .expect("Encryption failed");
-        
-        // Sign the original message
-        let signature = sender.keypair.sign(message.as_bytes());
-        
-        // Encrypt the symmetric key with recipient's RSA public key
-        let padding = PaddingScheme::new_pkcs1v15_encrypt();
-        let encrypted_symmetric_key = recipient
-            .rsa_public
-            .encrypt(&mut OsRng, padding, &symmetric_key)
-            .expect("Failed to encrypt symmetric key");
-        
-        EncryptedMessage {
-            encrypted_data,
-            signature,
-            sender_public: sender.keypair.public,
-            symmetric_key: encrypted_symmetric_key,
-            nonce: nonce.to_vec(),
-        }
-    }
+    
     
     // Decrypt and verify a message
     fn decrypt_message(&self, recipient: &User, message: &EncryptedMessage) -> Option<String> {
