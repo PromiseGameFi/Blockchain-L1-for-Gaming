@@ -155,77 +155,8 @@ impl eframe::App for SignatureApp {
                 }
             });
 
-            ui.separator();
+          
 
-            // User Selection
-            ui.heading("Select User");
-            egui::ComboBox::from_label("Current User")
-                .selected_text(self.current_user.as_deref().unwrap_or("None"))
-                .show_ui(ui, |ui| {
-                    for username in self.users.keys() {
-                        ui.selectable_value(&mut self.current_user, Some(username.clone()), username);
-                    }
-                });
-
-            // Message Sending Section
-            if let Some(current_user) = &self.current_user {
-                ui.separator();
-                ui.heading("Send Encrypted Message");
-                
-                ui.horizontal(|ui| {
-                    ui.label("To: ");
-                    egui::ComboBox::from_label("")
-                        .selected_text(&self.recipient)
-                        .show_ui(ui, |ui| {
-                            for username in self.users.keys() {
-                                if username != current_user {
-                                    ui.selectable_value(&mut self.recipient, username.clone(), username);
-                                }
-                            }
-                        });
-                });
-
-                ui.text_edit_multiline(&mut self.message);
-
-                if ui.button("Send Encrypted Message").clicked() && !self.message.is_empty() {
-                    if let (Some(sender), Some(recipient)) = (
-                        self.users.get(current_user),
-                        self.users.get(&self.recipient),
-                    ) {
-                        let encrypted = self.encrypt_message(sender, recipient, &self.message);
-                        self.encrypted_messages.push((self.recipient.clone(), encrypted));
-                        self.message.clear();
-                    }
-                }
-
-                // Display received messages
-                ui.separator();
-                ui.heading("Received Messages");
-                let current_user_clone = current_user.clone();
-                self.encrypted_messages.retain(|(recipient, encrypted_msg)| {
-                    if recipient == &current_user_clone {
-                        if let Some(recipient_user) = self.users.get(&current_user_clone) {
-                            if let Some(decrypted) = self.decrypt_message(recipient_user, encrypted_msg) {
-                                self.decrypted_messages.push((
-                                    BASE64.encode(&encrypted_msg.sender_public.as_bytes()),
-                                    decrypted,
-                                ));
-                            }
-                        }
-                        false
-                    } else {
-                        true
-                    }
-                });
-
-                // Display decrypted messages
-                for (sender, message) in &self.decrypted_messages {
-                    ui.label(format!("From {}: {}", sender, message));
-                }
-            }
-        });
-    }
-}
 
 fn main() -> Result<(), eframe::Error> {
     let options = eframe::NativeOptions {
