@@ -10,24 +10,7 @@ use aes_gcm::{
 };
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
 
-// Structure to hold user information
-#[derive(Clone)]
-struct User {
-    username: String,
-    keypair: Keypair,                    // For signatures
-    rsa_private: RsaPrivateKey,          // For encryption
-    rsa_public: RsaPublicKey,            // For encryption
-}
 
-// Structure to hold an encrypted message
-#[derive(Clone)]
-struct EncryptedMessage {
-    encrypted_data: Vec<u8>,             // The encrypted message
-    signature: Signature,                // Signature of the original message
-    sender_public: PublicKey,            // Sender's public key for verification
-    symmetric_key: Vec<u8>,              // Encrypted symmetric key
-    nonce: Vec<u8>,                      // Nonce for AES-GCM
-}
 
 // Main application state
 struct SignatureApp {
