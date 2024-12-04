@@ -21,6 +21,7 @@ struct SignatureApp {
     encrypted_messages: Vec<(String, EncryptedMessage)>,
     decrypted_messages: Vec<(String, String)>,
     new_username: String,
+    new_userCount: String,
 }
 
 impl Default for SignatureApp {
