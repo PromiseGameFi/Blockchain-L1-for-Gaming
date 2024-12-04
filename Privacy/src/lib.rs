@@ -34,7 +34,7 @@ impl Default for SignatureApp {
             encrypted_messages: Vec::new(),
             decrypted_messages: Vec::new(),
             new_username: String::new(),
-            new_userCount: String::new()
+            new_userCount: String::new(),
         }
     }
 }
