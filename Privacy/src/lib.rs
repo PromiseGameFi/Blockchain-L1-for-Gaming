@@ -39,18 +39,5 @@ impl Default for SignatureApp {
     }
 }
 
-impl SignatureApp {
-    // Create a new user with keypair
-    
-    
-    // Encrypt and sign a message
-    
-    
-    // Decrypt and verify a message
-    
 
-          
-
-
-fn main() -> Result<(), eframe::Error> {
    
