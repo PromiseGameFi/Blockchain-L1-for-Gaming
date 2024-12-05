@@ -138,6 +138,7 @@ impl SignatureApp {
             )
             .ok()?;
         
+        
         Some(decrypted_message)
     }
 }
