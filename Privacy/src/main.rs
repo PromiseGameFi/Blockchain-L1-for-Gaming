@@ -138,7 +138,7 @@ impl SignatureApp {
             )
             .ok()?;
         
-        
+
         Some(decrypted_message)
     }
 }
@@ -155,6 +155,7 @@ impl eframe::App for SignatureApp {
                     self.new_username.clear();
                 }
             });
+            
 
             ui.separator();
 
