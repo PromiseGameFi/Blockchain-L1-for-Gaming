@@ -13,6 +13,7 @@ pub enum ChainError {
     #[error("Bridge error: {0}")]
     BridgeError(String),
 }
+
 ```
 - Custom error type for handling chain-specific errors
 - Provides detailed error messages for debugging
