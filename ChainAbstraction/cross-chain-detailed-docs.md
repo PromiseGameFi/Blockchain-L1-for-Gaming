@@ -271,7 +271,7 @@ monitoring = ["dep:opentelemetry"]
 - `wiremock`: HTTP mocking
 - `test-log`: Test logging
 
-## 9. Extension Points
+## 9. Extension Points for New chains
 
 ### Adding New Chains
 1. Implement `ChainAdapter` trait
