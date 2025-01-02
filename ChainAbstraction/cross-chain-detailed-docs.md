@@ -52,7 +52,12 @@ pub struct Transaction {
 
 ### ChainAdapter
 ```rust
-
+#[async_trait]
+pub trait ChainAdapter {
+    async fn send_transaction(&self, tx: Transaction) -> Result<String, ChainError>;
+    async fn get_balance(&self, address: &str) -> Result<u128, ChainError>;
+    async fn get_nonce(&self, address: &str) -> Result<u64, ChainError>;
+}
 ```
 **Purpose**: 
 - Defines standard interface for chain interactions
