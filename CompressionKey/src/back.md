@@ -75,7 +75,7 @@ from bip38_utils import decrypt_bip38, encrypt_bip38
 from key_utils import private_key_to_wif, private_key_to_public_key, public_key_to_address
 
 def main():
-    # User input for BIP38-encoded key and password
+    # User input for BIP38-encoded key and password for decryption.
     bip38_key = input("Enter BIP38-encoded private key: ")
     password = input("Enter BIP38 password: ")
 
