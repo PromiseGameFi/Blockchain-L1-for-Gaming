@@ -20,7 +20,18 @@ fn generate_wallet_from_mnemonic(mnemonic_phrase: &str) -> Result<Wallet<Signing
 }
 
 // Function to get the network configuration
-
+fn get_network(network_name: &str) -> NetworkConfig {
+    match network_name {
+        "mainnet" => NetworkConfig {
+            name: "Ethereum Mainnet".to_string(),
+            rpc_url: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID".to_string(),
+        },
+        "rinkeby" => NetworkConfig {
+            name: "Rinkeby Testnet".to_string(),
+            rpc_url: "https://rinkeby.infura.io/v3/YOUR_INFURA_PROJECT_ID".to_string(),
+        },
+        _ => panic!("Unsupported network"),
+    }
 }
 
 // Function to get the ETH balance of the wallet
