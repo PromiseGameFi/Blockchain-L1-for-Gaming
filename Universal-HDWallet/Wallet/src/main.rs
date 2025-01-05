@@ -59,3 +59,22 @@ fn parse_eth_amount(amount_in_eth: &str) -> Result<U256, Box<dyn Error>> {
 
 // Main function to run the wallet application
 #[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    // Step 1: User enters their seed phrase
+    let mnemonic_phrase = "your seed phrase here";
+    let wallet = generate_wallet_from_mnemonic(mnemonic_phrase)?;
+
+    // Step 2: Select the network (e.g., "mainnet" or "rinkeby")
+    let network = get_network("rinkeby");
+
+    // Step 3: Fetch and display the wallet balance
+    let balance = get_balance(&wallet, &network.rpc_url).await?;
+    println!("Balance: {} ETH", balance);
+
+    // Step 4: Send a transaction (example usage)
+    let recipient_address = Address::from_str("0xRecipientAddressHere")?;
+    let amount = parse_eth_amount("0.01")?; // sending 0.01 ETH
+    send_eth(wallet.clone(), recipient_address, amount, &network.rpc_url).await?;
+
+    Ok(())
+}
