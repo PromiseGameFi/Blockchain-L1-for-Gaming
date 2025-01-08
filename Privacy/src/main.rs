@@ -93,20 +93,7 @@ impl SignatureApp {
         // Sign the original message
         let signature = sender.keypair.sign(message.as_bytes());
         
-        // Encrypt the symmetric key with recipient's RSA public key
-        let padding = PaddingScheme::new_pkcs1v15_encrypt();
-        let encrypted_symmetric_key = recipient
-            .rsa_public
-            .encrypt(&mut OsRng, padding, &symmetric_key)
-            .expect("Failed to encrypt symmetric key");
         
-        EncryptedMessage {
-            encrypted_data,
-            signature,
-            sender_public: sender.keypair.public,
-            symmetric_key: encrypted_symmetric_key,
-            nonce: nonce.to_vec(),
-        }
     }
     
     // Decrypt and verify a message
