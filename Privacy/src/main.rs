@@ -40,7 +40,19 @@ struct SignatureApp {
     new_username: String,
 }
 
-
+impl Default for SignatureApp {
+    fn default() -> Self {
+        Self {
+            users: HashMap::new(),
+            current_user: None,
+            recipient: String::new(),
+            message: String::new(),
+            encrypted_messages: Vec::new(),
+            decrypted_messages: Vec::new(),
+            new_username: String::new(),
+        }
+    }
+}
 
 impl SignatureApp {
     // Create a new user with keypair
