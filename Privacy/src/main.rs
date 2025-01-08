@@ -66,7 +66,15 @@ impl SignatureApp {
         let rsa_private = RsaPrivateKey::new(&mut csprng, 2048).expect("Failed to generate RSA key");
         let rsa_public = rsa_private.to_public_key();
         
+        let user = User {
+            username: username.clone(),
+            keypair,
+            rsa_private,
+            rsa_public,
+        };
         
+        self.users.insert(username, user);
+    }
     
     // Encrypt and sign a message
     fn encrypt_message(&self, sender: &User, recipient: &User, message: &str) -> EncryptedMessage {
