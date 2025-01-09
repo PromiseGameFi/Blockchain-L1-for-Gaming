@@ -24,20 +24,6 @@ pub struct Account {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Transaction {
-    pub from: String,
-    pub to: String,
-    pub amount: u128,
-    pub data: Vec<u8>,
-}
-
-// Core traits defining chain interaction behavior
-#[async_trait]
-pub trait ChainAdapter {
-    async fn send_transaction(&self, tx: Transaction) -> Result<String, ChainError>;
-    async fn get_balance(&self, address: &str) -> Result<u128, ChainError>;
-    async fn get_nonce(&self, address: &str) -> Result<u64, ChainError>;
-}
 
 #[async_trait]
 pub trait Bridge {
