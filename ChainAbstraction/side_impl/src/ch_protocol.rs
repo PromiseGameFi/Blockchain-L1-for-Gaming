@@ -40,17 +40,7 @@ pub trait ChainAdapter {
 }
 
 #[async_trait]
-pub trait Bridge {
-    async fn transfer(
-        &self,
-        from_chain: &ChainId,
-        to_chain: &ChainId,
-        amount: u128,
-        recipient: &str,
-    ) -> Result<String, ChainError>;
-    
-    async fn verify_transfer(&self, tx_hash: &str) -> Result<bool, ChainError>;
-}
+
 
 // Universal account manager
 pub struct UniversalAccount {
