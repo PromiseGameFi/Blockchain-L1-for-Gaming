@@ -53,11 +53,7 @@ pub trait Bridge {
 }
 
 // Universal account manager
-pub struct UniversalAccount {
-    account: Account,
-    chain_adapters: HashMap<ChainId, Box<dyn ChainAdapter>>,
-    bridges: Vec<Box<dyn Bridge>>,
-}
+
 
 impl UniversalAccount {
     pub fn new(universal_id: String) -> Self {
