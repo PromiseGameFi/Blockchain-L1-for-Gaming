@@ -85,21 +85,6 @@ impl UniversalAccount {
         self.bridges.push(bridge);
     }
 
-    pub async fn cross_chain_transfer(
-        &self,
-        from_chain: &ChainId,
-        to_chain: &ChainId,
-        amount: u128,
-        recipient: &str,
-    ) -> Result<String, ChainError> {
-        // Find suitable bridge
-        let bridge = self.bridges.first().ok_or(ChainError::BridgeError(
-            "No bridge available".to_string(),
-        ))?;
-
-        // Execute cross-chain transfer
-        bridge.transfer(from_chain, to_chain, amount, recipient).await
-    }
 }
 
 // Example implementation for Ethereum chain adapter
