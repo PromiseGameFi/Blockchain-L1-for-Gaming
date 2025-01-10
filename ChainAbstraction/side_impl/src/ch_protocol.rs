@@ -156,7 +156,21 @@ pub async fn example_usage() {
     let mut universal_account = UniversalAccount::new("user123".to_string());
 
     // Register Ethereum chain adapter
-    
+    let eth_adapter = Box::new(EthereumAdapter {
+        provider_url: "https://ethereum.rpc.com".to_string(),
+    });
+    universal_account.register_chain_adapter(
+        ChainId("ethereum".to_string()),
+        eth_adapter,
+        "0x123...".to_string(),
+    );
+
+    // Register bridge
+    let bridge = Box::new(LayerZeroBridge {
+        endpoint: "https://layerzero.endpoint.com".to_string(),
+    });
+    universal_account.register_bridge(bridge);
+
     // Perform cross-chain transfer
     let result = universal_account
         .cross_chain_transfer(
