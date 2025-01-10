@@ -127,9 +127,7 @@ impl ChainAdapter for EthereumAdapter {
 }
 
 // Example implementation for a cross-chain bridge
-pub struct LayerZeroBridge {
-    endpoint: String,
-}
+
 
 #[async_trait]
 impl Bridge for LayerZeroBridge {
