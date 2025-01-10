@@ -172,17 +172,5 @@ pub async fn example_usage() {
     universal_account.register_bridge(bridge);
 
     // Perform cross-chain transfer
-    let result = universal_account
-        .cross_chain_transfer(
-            &ChainId("ethereum".to_string()),
-            &ChainId("polygon".to_string()),
-            1000000,
-            "0x456...",
-        )
-        .await;
-
-    match result {
-        Ok(tx_hash) => println!("Cross-chain transfer successful: {}", tx_hash),
-        Err(e) => println!("Cross-chain transfer failed: {}", e),
-    }
+    
 }
