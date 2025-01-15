@@ -110,7 +110,37 @@ impl SignatureApp {
     }
     
     // Decrypt and verify a message
-   
+    fn decrypt_message(&self, recipient: &User, message: &EncryptedMessage) -> Option<String> {
+        // Decrypt the symmetric key using recipient's private key
+        let padding = PaddingScheme::new_pkcs1v15_encrypt();
+        let symmetric_key = recipient
+            .rsa_private
+            .decrypt(padding, &message.symmetric_key)
+            .ok()?;
+        
+        // Create cipher
+        let cipher = Aes256Gcm::new_from_slice(&symmetric_key).ok()?;
+        let nonce = Nonce::from_slice(&message.nonce);
+        
+        // Decrypt the message
+        let decrypted_data = cipher
+            .decrypt(nonce, message.encrypted_data.as_ref())
+            .ok()?;
+        
+        let decrypted_message = String::from_utf8(decrypted_data).ok()?;
+        
+        // Verify the signature
+        message
+            .sender_public
+            .verify(
+                decrypted_message.as_bytes(),
+                &message.signature,
+            )
+            .ok()?;
+        
+
+        Some(decrypted_message)
+    }
 }
 
 
