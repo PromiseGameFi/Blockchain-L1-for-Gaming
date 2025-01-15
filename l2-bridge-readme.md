@@ -112,11 +112,6 @@ pub struct L1Config {
     bridge_contract_address: Address,
     chain_id: u64,
 }
-
-MIT License - see LICENSE file for details
-
-## Contact
-
 ```
 
 ## Contributing
@@ -143,5 +138,8 @@ cargo test
 
 ## License
 
+MIT License - see LICENSE file for details
+
+## Contact
 
 For questions and support, please open an issue in the repository.
