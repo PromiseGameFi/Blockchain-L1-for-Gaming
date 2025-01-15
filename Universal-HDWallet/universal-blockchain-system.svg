@@ -24,5 +24,10 @@
     <rect x="650" y="350" width="150" height="80" rx="10" fill="#ff6b6b"/>
     <text x="725" y="395" text-anchor="middle" fill="white" font-size="16">Other Chains</text>
     
-  
+    <!-- Connection Lines -->
+    <path d="M400 130 L400 180" stroke="#333" stroke-width="2"/>
+    <path d="M125 300 L125 350" stroke="#333" stroke-width="2"/>
+    <path d="M325 300 L325 350" stroke="#333" stroke-width="2"/>
+    <path d="M525 300 L525 350" stroke="#333" stroke-width="2"/>
+    <path d="M725 300 L725 350" stroke="#333" stroke-width="2"/>
 </svg>
