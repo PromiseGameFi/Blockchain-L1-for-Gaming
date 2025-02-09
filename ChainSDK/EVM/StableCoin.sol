@@ -57,12 +57,5 @@ contract RadStablecoin is ERC20, Ownable {
         collateralBalances[msg.sender] += collateralToReturn;
     }
 
-    /// @notice Gets the current price of LineaETH in USD
-    /// @dev In a real-world scenario, this would fetch the price from an oracle
-    /// @return The current LineaETH price in USD (fixed at $2000 for simplicity)
-    function getCurrentPrice() public view returns (uint256) {
-        // In a real-world scenario, this would fetch the current LineaETH/USD price from an oracle
-        // For simplicity, we'll use a fixed price of $2000 per LineaETH
-        return 200000; // $2000.00
-    }
+    
 }
