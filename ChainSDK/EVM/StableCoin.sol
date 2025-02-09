@@ -46,16 +46,7 @@ contract RadStablecoin is ERC20, Ownable {
         _mint(msg.sender, stablecoinAmount);
     }
 
-    /// @notice Burns stablecoin (RAD) and returns the equivalent collateral to the user
-    /// @dev Calculates collateral to return based on current LineaETH price and burns RAD tokens
-    /// @param stablecoinAmount The amount of stablecoin to burn
-    function burnStablecoin(uint256 stablecoinAmount) external {
-        require(balanceOf(msg.sender) >= stablecoinAmount, "Insufficient stablecoin balance");
-
-        uint256 collateralToReturn = (stablecoinAmount * COLLATERAL_RATIO * PRICE_PRECISION) / (100 * getCurrentPrice());
-        _burn(msg.sender, stablecoinAmount);
-        collateralBalances[msg.sender] += collateralToReturn;
-    }
+    
 
     
 }
