@@ -46,7 +46,23 @@ contract RadStablecoin is ERC20, Ownable {
         _mint(msg.sender, stablecoinAmount);
     }
 
-    
+    /// @notice Burns stablecoin (RAD) and returns the equivalent collateral to the user
+    /// @dev Calculates collateral to return based on current LineaETH price and burns RAD tokens
+    /// @param stablecoinAmount The amount of stablecoin to burn
+    function burnStablecoin(uint256 stablecoinAmount) external {
+        require(balanceOf(msg.sender) >= stablecoinAmount, "Insufficient stablecoin balance");
 
-    
+        uint256 collateralToReturn = (stablecoinAmount * COLLATERAL_RATIO * PRICE_PRECISION) / (100 * getCurrentPrice());
+        _burn(msg.sender, stablecoinAmount);
+        collateralBalances[msg.sender] += collateralToReturn;
+    }
+
+    /// @notice Gets the current price of LineaETH in USD
+    /// @dev In a real-world scenario, this would fetch the price from an oracle
+    /// @return The current LineaETH price in USD (fixed at $2000 for simplicity)
+    function getCurrentPrice() public view returns (uint256) {
+        // In a real-world scenario, this would fetch the current LineaETH/USD price from an oracle
+        // For simplicity, we'll use a fixed price of $2000 per LineaETH
+        return 200000; // $2000.00
+    }
 }
