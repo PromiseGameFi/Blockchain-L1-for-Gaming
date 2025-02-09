@@ -26,6 +26,15 @@ contract RadStablecoin is ERC20, Ownable {
         collateralBalances[msg.sender] += msg.value;
     }
 
+    /// @notice Allows users to withdraw their deposited collateral
+    /// @dev Implements the checks-effects-interactions pattern to prevent reentrancy
+    /// @param amount The amount of collateral to withdraw (in wei)
+    function withdrawCollateral(uint256 amount) external {
+        require(collateralBalances[msg.sender] >= amount, "Insufficient collateral");
+        collateralBalances[msg.sender] -= amount; // Update state before making external call
+        payable(msg.sender).transfer(amount);     // Safely transfer LineaETH after updating state
+    }
+
     /// @notice Mints stablecoin (RAD) based on the user's deposited collateral
     /// @dev Calculates required collateral based on current LineaETH price and mints RAD tokens
     /// @param stablecoinAmount The amount of stablecoin to mint
