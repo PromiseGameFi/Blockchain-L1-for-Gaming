@@ -47,6 +47,7 @@ cd avalanche-l2-bridge
 cargo build --release
 ```
 
+
 ## Usage
 
 ### Basic Bridge Initialization
