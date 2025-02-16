@@ -37,7 +37,16 @@ pub struct PubKey {
     pub extended_key: SolanaExPublicKey,
 }
 
+impl PubKey {
+    pub fn from_private_key(priv_key: &PrivKey) -> PubKey {
+        let pub_key = SolanaExPublicKey::from_private_key(&priv_key.extended_key);
 
+        PubKey {
+            derivation: priv_key.derivation.clone(),
+            extended_key: pub_key.unwrap(),
+        }
+    }
+}
 
 trait DerivationExt {
     fn parent_fingerprint(&self) -> Vec<u8>;
@@ -56,7 +65,28 @@ impl DerivationExt for Derivation {
     }
 }
 
+fn encode_derivation(buf: &mut Vec<u8>, derivation: &Derivation) {
+    buf.extend_from_slice(&derivation.depth.to_be_bytes());
+    buf.extend_from_slice(&derivation.parent_fingerprint());
 
+    match derivation.key_index {
+        Some(key_index) => {
+            buf.extend_from_slice(&key_index.raw_index().to_be_bytes());
+        }
+        None => buf.extend_from_slice(&[0; 4]),
+    }
+}
+
+fn decode_derivation(data: (&dyn KeyChain, ChainPath)) -> Result<Derivation, Error> {
+    let slice: String = data.1.to_string();
+    let chain_path = &slice[..(slice.len())];
+    let (_extended_key, derivation) = data
+        .0
+        .derive_private_key(chain_path.into())
+        .expect("fetch key");
+
+    Ok(derivation)
+}
 
 fn encode_checksum(buf: &mut Vec<u8>) {
     let check_sum = {
