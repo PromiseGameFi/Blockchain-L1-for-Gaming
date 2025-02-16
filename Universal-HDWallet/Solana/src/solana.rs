@@ -56,28 +56,7 @@ impl DerivationExt for Derivation {
     }
 }
 
-fn encode_derivation(buf: &mut Vec<u8>, derivation: &Derivation) {
-    buf.extend_from_slice(&derivation.depth.to_be_bytes());
-    buf.extend_from_slice(&derivation.parent_fingerprint());
 
-    match derivation.key_index {
-        Some(key_index) => {
-            buf.extend_from_slice(&key_index.raw_index().to_be_bytes());
-        }
-        None => buf.extend_from_slice(&[0; 4]),
-    }
-}
-
-fn decode_derivation(data: (&dyn KeyChain, ChainPath)) -> Result<Derivation, Error> {
-    let slice: String = data.1.to_string();
-    let chain_path = &slice[..(slice.len())];
-    let (_extended_key, derivation) = data
-        .0
-        .derive_private_key(chain_path.into())
-        .expect("fetch key");
-
-    Ok(derivation)
-}
 
 fn encode_checksum(buf: &mut Vec<u8>) {
     let check_sum = {
