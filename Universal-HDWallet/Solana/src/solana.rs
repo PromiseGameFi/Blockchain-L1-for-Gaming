@@ -37,16 +37,7 @@ pub struct PubKey {
     pub extended_key: SolanaExPublicKey,
 }
 
-impl PubKey {
-    pub fn from_private_key(priv_key: &PrivKey) -> PubKey {
-        let pub_key = SolanaExPublicKey::from_private_key(&priv_key.extended_key);
 
-        PubKey {
-            derivation: priv_key.derivation.clone(),
-            extended_key: pub_key.unwrap(),
-        }
-    }
-}
 
 trait DerivationExt {
     fn parent_fingerprint(&self) -> Vec<u8>;
