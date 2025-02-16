@@ -70,14 +70,7 @@ impl Serialize<Vec<u8>> for SolanaExPrivateKey {
 }
 
 impl Deserialize<&[u8], Error> for SolanaExPrivateKey {
-    fn deserialize(data: &[u8]) -> Result<Self, Error> {
-        let private_key = Sk::from_bytes(&data[..32])?;
-        let chain_code = data[32..].to_vec();
-        Ok(SolanaExPrivateKey {
-            private_key: Rc::new(private_key),
-            chain_code,
-        })
-    }
+    
 }
 
 impl Serialize<Vec<u8>> for SolanaExPublicKey {
