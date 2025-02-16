@@ -54,11 +54,45 @@ impl SolanaExPrivateKey {
         })
     }
 
-    
+    fn sign_hardended_key(&self, index: u32) -> ring::hmac::Tag {
+        let signing_key = Key::new(HMAC_SHA512, &self.chain_code);
+        let mut h = Context::with_key(&signing_key);
+        h.update(&[0x00]);
+        h.update(&self.private_key.to_bytes());
+        h.update(&index.to_be_bytes());
+        h.sign()
+    }
+
+    pub fn derive_private_key(&self, key_index: KeyIndex) -> Result<SolanaExPrivateKey, Error> {
+        if !key_index.is_valid() {
+            return Err(Error::KeyIndexOutOfRange);
+        }
+
+        let signature = self.sign_hardended_key(key_index.raw_index());
+
+        let sig_bytes = signature.as_ref();
+        let (key, chain_code) = sig_bytes.split_at(sig_bytes.len() / 2);
+        let private_key = Rc::new(Sk::from_bytes(key)?);
+
+        Ok(SolanaExPrivateKey {
+            private_key,
+            chain_code: chain_code.to_vec(),
+        })
+    }
 }
 
 impl SolanaExPublicKey {
-    
+    pub fn from_private_key(extended_key: &SolanaExPrivateKey) -> Result<SolanaExPublicKey, Error> {
+        let private_key = Rc::try_unwrap(Rc::clone(&extended_key.private_key)).unwrap_err();
+
+        let public_key = Pk::from(&*private_key);
+
+        Ok(SolanaExPublicKey(public_key))
+    }
+
+    pub fn is_on_curve(bytes: &[u8]) -> bool {
+        CompressedEdwardsY::from_slice(bytes).decompress().is_some()
+    }
 }
 
 impl Serialize<Vec<u8>> for SolanaExPrivateKey {
@@ -70,7 +104,14 @@ impl Serialize<Vec<u8>> for SolanaExPrivateKey {
 }
 
 impl Deserialize<&[u8], Error> for SolanaExPrivateKey {
-    
+    fn deserialize(data: &[u8]) -> Result<Self, Error> {
+        let private_key = Sk::from_bytes(&data[..32])?;
+        let chain_code = data[32..].to_vec();
+        Ok(SolanaExPrivateKey {
+            private_key: Rc::new(private_key),
+            chain_code,
+        })
+    }
 }
 
 impl Serialize<Vec<u8>> for SolanaExPublicKey {
