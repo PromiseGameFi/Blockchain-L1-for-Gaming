@@ -68,8 +68,6 @@ impl SolanaExPrivateKey {
             return Err(Error::KeyIndexOutOfRange);
         }
 
-        let signature = self.sign_hardended_key(key_index.raw_index());
-
         
     }
 }
