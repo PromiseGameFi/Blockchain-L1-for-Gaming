@@ -70,14 +70,7 @@ impl SolanaExPrivateKey {
 
         let signature = self.sign_hardended_key(key_index.raw_index());
 
-        let sig_bytes = signature.as_ref();
-        let (key, chain_code) = sig_bytes.split_at(sig_bytes.len() / 2);
-        let private_key = Rc::new(Sk::from_bytes(key)?);
-
-        Ok(SolanaExPrivateKey {
-            private_key,
-            chain_code: chain_code.to_vec(),
-        })
+        
     }
 }
 
