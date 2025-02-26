@@ -55,12 +55,7 @@ impl SolanaExPrivateKey {
     }
 
     fn sign_hardended_key(&self, index: u32) -> ring::hmac::Tag {
-        let signing_key = Key::new(HMAC_SHA512, &self.chain_code);
-        let mut h = Context::with_key(&signing_key);
-        h.update(&[0x00]);
-        h.update(&self.private_key.to_bytes());
-        h.update(&index.to_be_bytes());
-        h.sign()
+      
     }
 
     pub fn derive_private_key(&self, key_index: KeyIndex) -> Result<SolanaExPrivateKey, Error> {
