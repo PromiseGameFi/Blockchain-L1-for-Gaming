@@ -54,14 +54,7 @@ impl SolanaExPrivateKey {
         })
     }
 
-    fn sign_hardended_key(&self, index: u32) -> ring::hmac::Tag {
-        let signing_key = Key::new(HMAC_SHA512, &self.chain_code);
-        let mut h = Context::with_key(&signing_key);
-        h.update(&[0x00]);
-        h.update(&self.private_key.to_bytes());
-        h.update(&index.to_be_bytes());
-        h.sign()
-    }
+    
 
     
 }
@@ -79,14 +72,7 @@ impl Serialize<Vec<u8>> for SolanaExPrivateKey {
 }
 
 impl Deserialize<&[u8], Error> for SolanaExPrivateKey {
-    fn deserialize(data: &[u8]) -> Result<Self, Error> {
-        let private_key = Sk::from_bytes(&data[..32])?;
-        let chain_code = data[32..].to_vec();
-        Ok(SolanaExPrivateKey {
-            private_key: Rc::new(private_key),
-            chain_code,
-        })
-    }
+    
 }
 
 impl Serialize<Vec<u8>> for SolanaExPublicKey {
