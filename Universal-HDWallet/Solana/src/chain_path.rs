@@ -93,11 +93,15 @@ impl<'a> From<String> for ChainPath<'a> {
 }
 
 impl<'a> From<&'a str> for ChainPath<'a> {
-    
+    fn from(path: &'a str) -> Self {
+        ChainPath::new(path)
+    }
 }
 
 impl fmt::Display for ChainPath<'_> {
-    
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.to_string())
+    }
 }
 
 #[cfg(test)]
