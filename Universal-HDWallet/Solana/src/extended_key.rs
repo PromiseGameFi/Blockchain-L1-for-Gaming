@@ -82,17 +82,7 @@ impl SolanaExPrivateKey {
 }
 
 impl SolanaExPublicKey {
-    pub fn from_private_key(extended_key: &SolanaExPrivateKey) -> Result<SolanaExPublicKey, Error> {
-        let private_key = Rc::try_unwrap(Rc::clone(&extended_key.private_key)).unwrap_err();
-
-        let public_key = Pk::from(&*private_key);
-
-        Ok(SolanaExPublicKey(public_key))
-    }
-
-    pub fn is_on_curve(bytes: &[u8]) -> bool {
-        CompressedEdwardsY::from_slice(bytes).decompress().is_some()
-    }
+    
 }
 
 impl Serialize<Vec<u8>> for SolanaExPrivateKey {
