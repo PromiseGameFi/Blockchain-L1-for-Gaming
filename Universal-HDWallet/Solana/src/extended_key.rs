@@ -6,7 +6,11 @@ use crate::{
     error::Error,
     traits::{Deserialize, Serialize},
 };
+use ed25519_dalek::{PublicKey as Pk, SecretKey as Sk};
+use key_index::KeyIndex;
+use ring::hmac::{Context, Key, HMAC_SHA512};
 
+use std::rc::Rc;
 
 /// Random entropy, part of extended key.
 ///
@@ -50,7 +54,14 @@ impl SolanaExPrivateKey {
         })
     }
 
-    
+    fn sign_hardended_key(&self, index: u32) -> ring::hmac::Tag {
+        let signing_key = Key::new(HMAC_SHA512, &self.chain_code);
+        let mut h = Context::with_key(&signing_key);
+        h.update(&[0x00]);
+        h.update(&self.private_key.to_bytes());
+        h.update(&index.to_be_bytes());
+        h.sign()
+    }
 
     
 }
