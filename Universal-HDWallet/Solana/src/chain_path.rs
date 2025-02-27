@@ -93,9 +93,7 @@ impl<'a> From<String> for ChainPath<'a> {
 }
 
 impl<'a> From<&'a str> for ChainPath<'a> {
-    fn from(path: &'a str) -> Self {
-        ChainPath::new(path)
-    }
+    
 }
 
 impl fmt::Display for ChainPath<'_> {
