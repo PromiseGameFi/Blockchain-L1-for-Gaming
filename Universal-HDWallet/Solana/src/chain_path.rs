@@ -109,8 +109,64 @@ mod tests {
     use super::*;
 
     #[test]
-    
+    fn test_chain_path() {
+        assert_eq!(
+            ChainPath::from("m")
+                .iter()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap(),
+            vec![SubPath::Root]
+        );
+        assert_eq!(
+            ChainPath::from("m/1")
+                .iter()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap(),
+            vec![SubPath::Root, SubPath::Child(KeyIndex::Normal(1))],
+        );
+        assert_eq!(
+            ChainPath::from("m/2147483649H/1")
+                .iter()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap(),
+            vec![
+                SubPath::Root,
+                SubPath::Child(KeyIndex::hardened_from_normalize_index(1).unwrap()),
+                SubPath::Child(KeyIndex::Normal(1))
+            ],
+        );
+        // alternative hardened key represent
+        assert_eq!(
+            ChainPath::from("m/2147483649'/1")
+                .iter()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap(),
+            vec![
+                SubPath::Root,
+                SubPath::Child(KeyIndex::hardened_from_normalize_index(1).unwrap()),
+                SubPath::Child(KeyIndex::Normal(1))
+            ],
+        );
+        // from invalid string
+        assert!(ChainPath::from("m/2147483649h/1")
+            .iter()
+            .collect::<Result<Vec<_>, _>>()
+            .is_err());
+        assert!(ChainPath::from("/2147483649H/1")
+            .iter()
+            .collect::<Result<Vec<_>, _>>()
+            .is_err());
+        assert!(ChainPath::from("a")
+            .iter()
+            .collect::<Result<Vec<_>, _>>()
+            .is_err());
+    }
 
     #[test]
-   
+    fn test_chain_path_new() {
+        // new from string slice
+        assert_eq!("m/1", ChainPath::new("m/1").to_string());
+        // new from a runtime String
+        assert_eq!("m/1", ChainPath::new(String::from("m/1")).to_string());
+    }
 }
