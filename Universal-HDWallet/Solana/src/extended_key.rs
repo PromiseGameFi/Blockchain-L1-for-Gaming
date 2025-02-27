@@ -6,11 +6,7 @@ use crate::{
     error::Error,
     traits::{Deserialize, Serialize},
 };
-use ed25519_dalek::{PublicKey as Pk, SecretKey as Sk};
-use key_index::KeyIndex;
-use ring::hmac::{Context, Key, HMAC_SHA512};
 
-use std::rc::Rc;
 
 /// Random entropy, part of extended key.
 ///
