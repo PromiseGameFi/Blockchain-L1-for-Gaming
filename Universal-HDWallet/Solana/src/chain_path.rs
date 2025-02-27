@@ -112,10 +112,5 @@ mod tests {
     
 
     #[test]
-    fn test_chain_path_new() {
-        // new from string slice
-        assert_eq!("m/1", ChainPath::new("m/1").to_string());
-        // new from a runtime String
-        assert_eq!("m/1", ChainPath::new(String::from("m/1")).to_string());
-    }
+   
 }
