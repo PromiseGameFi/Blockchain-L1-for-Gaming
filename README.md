@@ -98,6 +98,4 @@ For questions or support, open an issue or contact the maintainers via GitHub.
 
 **Repository:** [PromiseGameFi/Blockchain-L1-for-Gaming](https://github.com/PromiseGameFi/Blockchain-L1-for-Gaming)
 
----
 
-Feel free to further customize this README with more detailed instructions or module-specific usage as your project evolves.
